@@ -14,8 +14,10 @@ colors = [
 
 
 async def worker(cid, wname):
+    print(f"Worker {wname} created")
     ctr = 0
-    stime = random.randint(1,5) / 0.7
+    # stime = random.randint(1,5) / 0.7
+    stime = 0.2
     while True:
         await asyncio.sleep(stime)
         ctr += 1
