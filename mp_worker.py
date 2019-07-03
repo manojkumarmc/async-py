@@ -10,19 +10,19 @@ async def ask_exit(signame, loop, pool):
     [task.cancel() for task in tasks]
     print(f"Cancelling {len(tasks)} tasks")
     await asyncio.gather(*tasks, return_exceptions=True)
-    pool.terminate()
-    loop.stop()
+    # pool.terminate()
+    loop.close()
 
 
 async def worker(wname):
     asyncio.Task.current_task().name = wname
     print(f"Worker {wname} is starting")
     ctr = 0
-    # while True:
-    #     await asyncio.sleep(0.5)
-    #     print(f"Processing in {wname}")
-    await asyncio.sleep(5)
-    print(f"processed {wname}")
+    while True:
+        await asyncio.sleep(0.5)
+        print(f"Processing in {wname}")
+    # await asyncio.sleep(5)
+    # print(f"processed {wname}")
 
 
 async def main():
